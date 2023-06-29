@@ -167,10 +167,13 @@ namespace StringToExpression.LanguageDefinitions
                     regex: @"[Dd][Aa][Tt][Ee][Tt][Ii][Mm][Ee]'[^']+'",
                     expressionBuilder: x => Expression.Constant(DateTime.Parse(x.Substring("datetime".Length).Trim('\'')))),
                 new OperandDefinition(
+                    name:"UTC",
+                    regex: @"utc'[^']+'",
+                    expressionBuilder: x => Expression.Constant(DateTime.Parse(x.Substring("utc".Length).Trim('\'')).ToUniversalTime())),
+                new OperandDefinition(
                     name:"DATETIMEOFFSET",
                     regex: @"datetimeoffset'[^']+'",
                     expressionBuilder: x => Expression.Constant(DateTimeOffset.Parse(x.Substring("datetimeoffset".Length).Trim('\'')))),
-
                 new OperandDefinition(
                     name:"FLOAT",
                     regex: @"\-?\d+?\.\d*f",
